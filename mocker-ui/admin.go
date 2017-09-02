@@ -1,13 +1,14 @@
-package admin
+package mocker_ui
 
 import (
 	"log"
 	"net/http"
 
 	"github.com/husobee/vestigo"
+	"github.com/boltdb/bolt"
 )
 
-func Admin() {
+func Admin(db *bolt.DB) {
 	router := vestigo.NewRouter()
 	vestigo.AllowTrace = true
 
@@ -16,6 +17,7 @@ func Admin() {
 
 	log.Print("Web Admin Start listen port 1235")
 	log.Fatal(http.ListenAndServe(":1235", router))
+
 
 }
 
