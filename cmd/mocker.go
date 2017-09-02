@@ -5,6 +5,9 @@ import (
 	"net/http"
 
 	"mocker/api"
+
+	"mocker/mocker-ui"
+
 	"github.com/husobee/vestigo"
 
 	"github.com/boltdb/bolt"
@@ -27,7 +30,10 @@ func main() {
 	router.Get("/*", api.RequestHandler)
 	router.Post("/*", api.RequestHandler)
 
+	go mocker_ui.Admin(db)
+
 	log.Print("API Start listen port 1234")
 	log.Fatal(http.ListenAndServe(":1234", router))
+
 
 }
